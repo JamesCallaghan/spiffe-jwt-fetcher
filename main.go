@@ -21,6 +21,10 @@ func main() {
 }
 
 func run(ctx context.Context) error {
+
+	ctx, cancel := context.WithTimeout(ctx, 30*time.Second)
+	defer cancel()
+
 	clientOptions := workloadapi.WithClientOptions(workloadapi.WithAddr(socketPath))
 
 	audience := "spire-test-s3"
